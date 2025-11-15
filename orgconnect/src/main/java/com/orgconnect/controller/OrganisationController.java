@@ -54,7 +54,7 @@ public class OrganisationController {
         return showSuccessObj(org, "Organisation created successfully");
     }
 
-    @GetMapping("/list")
+    @GetMapping("/get-org-details")
     public ResponseEntity<?> listOrganisations(HttpServletRequest req, @RequestParam(required = false) String orgId,
                                                @RequestParam(required = false) String orgName,
                                                @RequestParam(required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
