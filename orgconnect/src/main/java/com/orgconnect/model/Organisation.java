@@ -5,6 +5,7 @@ import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.Map;
 
 @Document(collection = "organisations")
 public class Organisation {
@@ -16,18 +17,13 @@ public class Organisation {
 
     private String orgId;
     private String orgName;
+    private String email;
+    private String phoneNo;
+    private Map<String,Object> address;
     private String token;
+    private String status;
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
-
-    public Organisation(Long id, String orgId, String orgName, String token, LocalDateTime createdDate, LocalDateTime updatedDate) {
-        this.id = id;
-        this.orgId = orgId;
-        this.orgName = orgName;
-        this.token = token;
-        this.createdDate = createdDate;
-        this.updatedDate = updatedDate;
-    }
 
     public Long getId() {
         return id;
@@ -75,5 +71,37 @@ public class Organisation {
 
     public void setUpdatedDate(LocalDateTime updatedDate) {
         this.updatedDate = updatedDate;
+    }
+
+    public Map<String, Object> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Map<String, Object> address) {
+        this.address = address;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public void setPhoneNo(String phoneNo) {
+        this.phoneNo = phoneNo;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

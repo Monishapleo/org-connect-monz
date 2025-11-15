@@ -29,7 +29,8 @@ public interface OrganisationRepository extends MongoRepository<Organisation, Lo
             LocalDateTime toDate,
             Pageable pageable
     );
-    boolean existsByToken(String token);
+
+    boolean existsByOrgIdAndToken(String orgId, String token);
 
 }
 

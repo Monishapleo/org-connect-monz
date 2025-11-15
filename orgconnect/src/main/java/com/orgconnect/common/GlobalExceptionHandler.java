@@ -1,15 +1,13 @@
-/*
 package com.orgconnect.common;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.npg.courierservice.enumclass.ErrorCode;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.client.RestClientResponseException;
-
+import com.orgconnect.enums.ErrorCode;
 import java.util.Map;
 
 @ControllerAdvice
@@ -33,14 +31,14 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RestClientResponseException.class)
     public ResponseEntity<APIResponse> handleRestClientResponseException(RestClientResponseException ex) {
         APIResponse response = new APIResponse();
-        ErrorResponses errorResponse = new ErrorResponses(ErrorCode.UNABLE_TO_FETCH_TRACKING);
+        ErrorResponses errorResponse = new ErrorResponses(ErrorCode.INTERNAL_SERVER_ERROR);
 
         try {
             Map<String, Object> body = objectMapper.readValue(ex.getResponseBodyAsString(), new TypeReference<>() {});
-            errorResponse.additionalInfo.excepCode = ErrorCode.UNABLE_TO_FETCH_TRACKING.code;
+            errorResponse.additionalInfo.excepCode = ErrorCode.INTERNAL_SERVER_ERROR.code;
             errorResponse.additionalInfo.excepText = body.toString();
         } catch (Exception e) {
-            errorResponse.additionalInfo.excepCode = ErrorCode.UNABLE_TO_FETCH_TRACKING.code;
+            errorResponse.additionalInfo.excepCode = ErrorCode.INTERNAL_SERVER_ERROR.code;
             errorResponse.additionalInfo.excepText = ex.getResponseBodyAsString();
         }
 
@@ -82,4 +80,3 @@ public class GlobalExceptionHandler {
     }
 
 }
-*/
